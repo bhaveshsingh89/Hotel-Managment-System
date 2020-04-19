@@ -1,0 +1,30 @@
+void clockDisplay()
+    {
+      Calendar cal = new GregorianCalendar();
+      int month = cal.get(Calendar.MONTH);
+      int date = cal.get(Calendar.DATE);
+      int year = cal.get(Calendar.YEAR);
+      lbldate.setText("DATE :"+ date + "-" + (month+1) + "-" + year);
+      Thread clocktime = new Thread()
+      {
+        public void run()
+        {         
+            try
+            { 
+                while (true)
+                {
+                    Calendar c = new GregorianCalendar();
+                    int hour = c.get(Calendar.HOUR);
+                    int min = c.get(Calendar.MINUTE);
+                    int sec = c.get(Calendar.SECOND);
+                    lbltime.setText("TIME :"+ hour + ":" + min + ":" + sec);
+                    sleep(1000);
+                }   
+            } catch (InterruptedException ex) 
+            {
+                Logger.getLogger(MainMenuScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+       };
+       clocktime.start();
+    }
